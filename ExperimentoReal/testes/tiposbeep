@@ -1,0 +1,159 @@
+	if Correct == 0 && ~timedout
+            PsychPortAudio('Start', pahandle, repetitions, startCue, waitForDeviceStart);
+            WaitSecs(remainer-beepLengthSecs);
+            elseif Correct == 0 && timedout
+            PsychPortAudio('Start', pahandle, repetitions, startCue, waitForDeviceStart);
+            Screen('TextSize',Screen_wid, text_size);
+            DrawFormattedText(Screen_wid, 'missed trial', 'center', 'center');
+            Screen('Flip', Screen_wid);
+            WaitSecs(beepLengthSecs+feedback);
+            elseif Correct == 1
+            WaitSecs(remainer+beepLengthSecs);
+            end
+
+
+
+function [keyPressed] = waitForYesNoKeypress
+keyPressed = 0; % set this to zero until we receive a sensible keypress
+while keyPressed == 0 % hang the system until a response is given
+    [ keyIsDown, seconds, keyCode ] = KbCheck; % check for keypress
+    if find(keyCode) == 89 | find(keyCode) == 78 % 89 = 'y', 78 = 'n'
+        keyPressed = find(keyCode);
+    end
+end
+
+
+Key1 = 1;
+Key2 = 2;
+Key3 = 3;
+        [keyIsDown,secs, pressedKeys] = KbCheck;
+        if pressedKeys(escapeKey)
+            ShowCursor;
+            sca;
+            return
+        elseif pressedKeys(Key1) == '1'
+            keyResp = 1;
+          
+        elseif pressedKeys(Key2) == '2'
+            keyResp = 2;
+      
+   	elseif pressedKeys(Key3) == '3'
+            keyResp = 3;
+         
+        end
+
+    
+     rt1 = [rt1 endtime-s];
+     RT = rt1;	
+     KbReleaseWait(); %after each keypress is detected, this will prevent multiple keypresses being erroneously detected from a single press, for example if the participant is holding a key down
+     keyResp = pressedKeys(activeKeys);
+     response = [response;[keyResp]];
+
+     Screen('TextSize', window,28); 
+     WaitSecs(starttime);
+end     
+
+
+
+
+
+
+Key1 = 1;
+Key2 = 2;
+Key3 = 3;
+
+
+	[keyIsDown, secs, keyCode] = KbCheck;
+	if any(keyCode(activeKeys))
+	    keyResp = find(keyCode);
+ 	if keyCode(escapeKey)
+     	    ShowCursor;
+     	    sca;
+     	    return
+        elseif keyCode(Key1)
+     		keyResp(0) = '1';
+     		
+ 	elseif keyCode(Key2) 
+    		keyResp(1) = '2';
+     	
+	elseif keyCode(Key3)
+     		keyResp(2) = '3';
+     	  	
+	end
+     end
+
+
+
+	while 1
+        [keyIsDown,secs, keyCode] = KbCheck;
+	FlushEvents('keydown');
+	if any(keyCode(activeKeys))
+	    	if keyCode(Key1)||keyCode(Key2)||keyCode(Key3)
+%            	 	rt = [rt endtime-s];
+            		keyResp=find(keyCode);
+			Screen('Flip', window);
+			break; 		
+ 		elseif keyCode(escapeKey)
+            		ShowCursor;
+            		sca;
+       		return
+		end
+			keyIsDown=0; keyCode=0;	
+  	  		(keyResp==corrkey(1)&&answer==1)||(keyResp==corrkey(2)&&answer==2)||(keyResp==corrkey(3)&&answer==3)          		
+    		end
+	end
+   
+
+
+
+
+
+% generate a beep
+	beepWaveform = MakeBeep(1000,.250,44100);
+
+	% make stereo
+	beepWaveform = repmat(beepWaveform, 2, 1);
+
+	% fill buffer, play
+	PsychPortAudio('FillBuffer', pahandle, beepWaveform );
+	startTime = PsychPortAudio('Start', pahandle, 1);
+
+ 	while 1
+                [keyIsDown, secs, keyCode] = KbCheck;
+                FlushEvents('keyDown');
+                if any(keyCode(activeKeys))
+                    if nKeys==1
+                        if keyCode(Key1)||keyCode(Key2)||keyCode(Key3)
+ 			    rt1 = [rt1 endtime-s];
+                            keyResp=find(keyCode);
+                            Screen('Flip', mainwin);
+                            break;
+                        elseif keyCode(escKey)
+                            ShowCursor; 
+		 	    sca;
+                        end
+                        keyIsDown=0; keyCode=0;
+                    end
+                end
+	end
+            if (keyResp==corrkey(1)&&answer==1)||(keyResp==corrkey(2)&&answer==2)||(keyResp==corrkey(3)&&answer==3)
+
+
+
+
+
+if (keyResp(1) = '0')||(keyResp(2) = '1')||(keyResp(3) = '2')
+		  WaitSecs(5);	               		
+		else keyResp ~= 1;
+		   Beeper(400, 0.8, 0.15);
+		   tBeep(end+1) = tOnset;
+		end
+                correct=1;
+            else
+                correct=0; Snd('Play', beepWaveform); WaitSecs(ErrorDelay);
+            end
+     
+
+
+
+

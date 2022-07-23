@@ -1,0 +1,181 @@
+lensound(i)
+lensound(i)/freq
+
+lensound(1)
+lensound(1)/freq
+
+lensound(2)
+lensound(2)/freq
+
+min(lensound)
+min(lensound)/freq
+min(lensound)-lensound(2)
+
+
+octave:11> min(lensound)-lensound(2)
+ans = -3805
+octave:12> linspace(1, 0, 3805)
+ans =
+
+ Columns 1 through 8:
+
+   1.00000   0.99974   0.99947   0.99921   0.99895   0.99869   0.99842   0.99816
+
+ Columns 9 through 16:
+
+   0.99790   0.99763   0.99737   0.99711   0.99685   0.99658   0.99632   0.99606
+
+ Columns 17 through 24:
+
+   0.99579   0.99553   0.99527   0.99501   0.99474   0.99448   0.99422   0.99395
+
+ Columns 25 through 32:
+
+   0.99369   0.99343   0.99317   0.99290   0.99264   0.99238   0.99211   0.99185
+
+ Columns 33 through 40:
+
+   0.99159   0.99132   0.99106   0.99080   0.99054   0.99027   0.99001   0.98975
+
+
+octave:13> plot(linspace(1, 0, 3805))
+octave:14> ^C
+octave:14> linspace(1, 0, 3805)
+ans =
+
+ Columns 1 through 8:
+
+   1.00000   0.99974   0.99947   0.99921   0.99895   0.99869   0.99842   0.99816
+
+ Columns 9 through 16:
+
+   0.99790   0.99763   0.99737   0.99711   0.99685   0.99658   0.99632   0.99606
+
+ Columns 17 through 24:
+
+   0.99579   0.99553   0.99527   0.99501   0.99474   0.99448   0.99422   0.99395
+
+ Columns 25 through 32:
+
+   0.99369   0.99343   0.99317   0.99290   0.99264   0.99238   0.99211   0.99185
+
+ Columns 33 through 40:
+
+   0.99159   0.99132   0.99106   0.99080   0.99054   0.99027   0.99001   0.98975
+
+ Columns 41 through 48:
+octave:15> sounds{2}
+ans =
+
+ Columns 1 through 8:
+
+  -0.00186  -0.00247  -0.00220  -0.00214  -0.00229  -0.00229  -0.00229  -0.00229
+  -0.00186  -0.00247  -0.00220  -0.00214  -0.00229  -0.00229  -0.00229  -0.00229
+
+ Columns 9 through 16:
+
+  -0.00198  -0.00186  -0.00217  -0.00241  -0.00229  -0.00204  -0.00183  -0.00168
+  -0.00198  -0.00186  -0.00217  -0.00241  -0.00229  -0.00204  -0.00183  -0.00168
+
+ Columns 17 through 24:
+
+  -0.00159  -0.00150  -0.00116  -0.00064  -0.00027  -0.00015   0.00000   0.00034
+  -0.00159  -0.00150  -0.00116  -0.00064  -0.00027  -0.00015   0.00000   0.00034
+
+ Columns 25 through 32:
+
+   0.00043  -0.00015  -0.00092  -0.00119  -0.00113  -0.00095  -0.00064  -0.00034
+   0.00043  -0.00015  -0.00092  -0.00119  -0.00113  -0.00095  -0.00064  -0.00034
+
+ Columns 33 through 40:
+warning: broken pipe
+octave:16> sounds{2}(2, 1:5)
+ans =
+
+  -0.0018616  -0.0024719  -0.0021973  -0.0021362  -0.0022888
+
+octave:17> sounds{2}(:, 1:5)
+ans =
+
+  -0.0018616  -0.0024719  -0.0021973  -0.0021362  -0.0022888
+  -0.0018616  -0.0024719  -0.0021973  -0.0021362  -0.0022888
+
+octave:18> sounds{2}(1, 1:5)
+ans =
+
+  -0.0018616  -0.0024719  -0.0021973  -0.0021362  -0.0022888
+
+octave:19> sounds{2}(1, 3805:end)
+ans =
+
+ Columns 1 through 8:
+
+  -0.04379  -0.02350  -0.00925  -0.00491  -0.00760  -0.02029  -0.04843  -0.08246
+
+ Columns 9 through 16:
+
+  -0.11133  -0.13486  -0.15076  -0.15475  -0.14740  -0.13049  -0.11035  -0.09714
+
+ Columns 17 through 24:
+
+  -0.09320  -0.09613  -0.10535  -0.11584  -0.12152  -0.11728  -0.08624  -0.01236
+
+ Columns 25 through 32:
+
+   0.09329   0.20959   0.33057   0.44901   0.54251   0.59122   0.59506   0.57196
+
+ Columns 33 through 40:
+
+   0.53867   0.48920   0.41098   0.32434   0.26273   0.22092   0.17273   0.11792
+
+ Columns 41 through 48:
+warning: broken pipe
+octave:20> sounds{2}(1, 3805:end)*linspace(1, 0, 3805)
+error: operator *: nonconformant arguments (op1 is 1x9848, op2 is 1x3805)
+octave:20> sounds{2}(1, end-3805:end)*linspace(1, 0, 3805)
+error: operator *: nonconformant arguments (op1 is 1x3806, op2 is 1x3805)
+octave:20> sounds{2}(1, end-3806:end)*linspace(1, 0, 3805)
+error: operator *: nonconformant arguments (op1 is 1x3807, op2 is 1x3805)
+octave:20> sounds{2}(2, end-3806:end)*linspace(1, 0, 3805)
+error: operator *: nonconformant arguments (op1 is 1x3807, op2 is 1x3805)
+octave:20> sounds{2}(2, end-3806:end) = 0
+sounds = 
+{
+  [1,1] =
+
+   Columns 1 through 7:
+
+    -0.00122  -0.00253  -0.00391  -0.00534  -0.00662  -0.00766  -0.00842
+    -0.00122  -0.00253  -0.00391  -0.00534  -0.00662  -0.00766  -0.00842
+
+   Columns 8 through 14:
+
+    -0.00909  -0.00977  -0.01044  -0.01108  -0.01163  -0.01208  -0.01270
+    -0.00909  -0.00977  -0.01044  -0.01108  -0.01163  -0.01208  -0.01270
+
+   Columns 15 through 21:
+
+    -0.01352  -0.01443  -0.01517  -0.01575  -0.01636  -0.01706  -0.01767
+    -0.01352  -0.01443  -0.01517  -0.01575  -0.01636  -0.01706  -0.01767
+
+   Columns 22 through 28:
+
+    -0.01804  -0.01843  -0.01892  -0.01941  -0.01984  -0.02042  -0.02115
+    -0.01804  -0.01843  -0.01892  -0.01941  -0.01984  -0.02042  -0.02115
+warning: broken pipe
+octave:21> sounds{2}(2, end-3806:end)*linspace(1, 0, 3805)
+error: operator *: nonconformant arguments (op1 is 1x3807, op2 is 1x3805)
+octave:21> sounds{2}(2, end-3808:end)*linspace(1, 0, 3805)
+error: operator *: nonconformant arguments (op1 is 1x3809, op2 is 1x3805)
+octave:21> sounds{2}(2, end-3804:end)*linspace(1, 0, 3805)
+error: operator *: nonconformant arguments (op1 is 1x3805, op2 is 1x3805)
+octave:21> sounds{2}(2, end-3805:end)*linspace(1, 0, 3805)
+error: operator *: nonconformant arguments (op1 is 1x3806, op2 is 1x3805)
+octave:21> sounds{2}(2, end-3806:end)*linspace(1, 0, 3805)
+error: operator *: nonconformant arguments (op1 is 1x3807, op2 is 1x3805)
+octave:21> sounds{2}(2, end-3803:end)*linspace(1, 0, 3805)
+error: operator *: nonconformant arguments (op1 is 1x3804, op2 is 1x3805)
+
+
+
+
